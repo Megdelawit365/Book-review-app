@@ -7,12 +7,13 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer>
-      <a href="mailto:megdelawitaynalem365@gmail.com" target="_blank"><SiGmail className='footer-icons' />
-      </a>
-      <a href="https://github.com/megdelawitxxx" target="_blank" 
-      ><FaGithub className='footer-icons' />
-      </a>
+    <footer className='flex-row  space-between'>
+      <p>&copy; 2025 Booklify</p>
+      <div >
+        <a href="mailto:megdelawitaynalem365@gmail.com" target="_blank"><SiGmail className='footer-icons' /></a>
+      <a href="https://github.com/megdelawitxxx" target="_blank" ><FaGithub className='footer-icons' /></a>
+      </div>
+      
 
 
     </footer>
