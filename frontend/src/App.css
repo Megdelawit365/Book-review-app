@@ -27,23 +27,32 @@ body {
 button{
   all:unset;
   padding: 0.5rem;
-  min-width: 10rem;
+  min-width: 6rem;
   text-align: center;
   display: block;
   margin: 0.3rem 0;
-  background-color:deeppink;
-  color:white;
+  color:black;
   border-radius: 0.5rem;
   transition: background-color 0.3s;
   margin: 0.3rem 1rem;
+  color: #000f89;
+   border: 1px solid #000f89;
 
 }
-button:hover{
-  border: 1px solid deeppink;
-  background-color: white;
-  color: deeppink;
-  
+
+.button2{
+  background-color: #000f89;
+  color: white;
 }
+.button2:hover{
+    background-color: #4d5feb;
+
+}
+/* button:hover{
+  background-color: #000f89;
+  color:white;
+  
+} */
 
 nav{
   padding: 0 2rem;
@@ -56,13 +65,17 @@ nav{
 }
 .big-font{
   font-size: 2rem;
-  font-weight: 900;
-  color:#0000cd;
-  color:#0000cd;
-
+  color: #000f89;
+  font-weight: 400;
+}
+.big-font p{
+  margin: 1rem;
+}
+.big-font div{
+  font-size: 1.2rem;
 }
 main{
-  padding: 8rem 2rem;
+  padding: 6rem 2rem;
   min-height: 100vh;
 }
 .landing-page{
@@ -71,18 +84,51 @@ main{
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
+  background-image: url('');
+  background-size: cover;
+  background-position: center;
+  margin: 1rem;
+  margin-top: 1rem;
+}
+
+.landing-page h1, h2{
+  font-weight:400;
+}
+.landing-page input{
+  width: 80%;
+  padding: 1.2rem;
+  padding-left: 3rem;
+
+  border-radius: 2rem;
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+
+}
+.landing-page form{
+  position: relative;
 }
 footer{
-  padding: 1rem;
+  padding: 0.2rem;
   position: relative;
   bottom: 0;
   width: 100%;
-  text-align: center;
-  background-color: white;
   box-shadow: 0 0 2px rgba(0,0,0,0.2);
+  background-color: #000426;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+    background-color: #010c69;
+
+  
 
 }
+
+.small-icons{
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+
 .footer-icons{
   border: 1px solid black;
   font-size: 2rem;
@@ -90,11 +136,19 @@ footer{
   margin: 0 0.3rem;
   border-radius: 0.2rem;
 }
+.footer-icons:hover{
+    border: 1px solid white;
+
+}
 h1{
   font-size: 3rem;
 }
 a{
   all:unset;
+
+}
+a:hover{
+  cursor:pointer;
 }
 .search-bar, .mini-search-bar{
   all: unset;
@@ -108,6 +162,7 @@ a{
 
 .search-form{
   width: 40%;
+  margin: 0;
 }
 .search-form-2{
   width: 100%;
@@ -115,14 +170,15 @@ a{
 .search-btn-2{
   all:unset;
   position:absolute;
-  top: 14%;
-  right:69%;
+  top: 22%;
+  right:72%;
 }
-.search-btn-2:ho{
+.search-btn-2:hover{
   border: none;
 }
 .mini-search-bar{
   width: 80%;
+  margin: 0;
 }
 .menu{
   display: none;
@@ -154,9 +210,9 @@ a{
   font-size: 1rem;
 }
 .icons{
-  font-size: 1.5rem;
+  font-size: 2rem;
   margin: 0 1rem;
-  color: deeppink;
+  color:#010c69;
 }
 
 .open{
@@ -171,11 +227,16 @@ input{
   border-radius: 0.4rem;
 }
 .signup-box, .addbook-box{
+  background-color: white;
   padding: 2rem;
   margin: auto;
-  margin-top: 3rem;
   box-shadow: 0 0 2px rgba(0,0,0,0.2);
   width: fit-content ;
+  border-radius: 1rem;
+}
+.signup-box button{
+  width:85%;
+  margin: 0;
 }
 .addbook-box{
   width: 50%;
@@ -185,16 +246,26 @@ input{
 }
 
 .filter-bar{
-  width: 100%;
-  box-shadow: 0 0 2px rgba(0,0,0,0.2);
+  width: 100% ;
   padding: 1rem;
   margin-top: 1rem;
   border-radius: 1rem;
-  gap:2rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+ gap: 7rem;
+
+}
+.filter-bar p{
+  font-size: 0.8rem;
+  font-style: italic;
+  color: rgb(95, 93, 93);
+  margin: 0;
+  margin-bottom: 0.2rem;
+  padding: 0;
+  text-align: left;
 }
 select, option{
   padding: 0.5rem 1rem;
-  margin-left: 1rem;
+  width: 12rem;
 }
 
 .expand{
@@ -291,11 +362,29 @@ textarea{
 .search-btn{
   all:unset;
   position:absolute;
-  top: 43%;
-  right:79%;
+  top: 40%;
+  right:77%;
 }
 .search-btn:hover{
   border: none;
+}
+
+.search-btn-3{
+  position: absolute;
+  /* right: 54%;
+  bottom: 18%; */
+  top:18%;
+  right:5%;
+  margin: 0;
+  border: none;
+  background-color: #000f89;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+
+  height: 46%;
+  width: 3rem;
 }
 .image-bar img{
   height: 20rem;
@@ -303,9 +392,10 @@ textarea{
 }
 
 .profile-bar{
+  padding: 1rem;
   padding-top: 1rem;
   height: fit-content;
-  width: 10rem;
+  width: fit-content;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
   position: absolute;
   background-color: white;
@@ -315,7 +405,11 @@ textarea{
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  text-align: left;
+}
+.align-center{
+  display: flex;
+  align-items: center;
 }
 .close{
   display: none;
@@ -329,22 +423,13 @@ textarea{
   background-color: rgb(245, 245, 245);
 }
 .blueBackground{
-  background-color: blue;
+  background-color:#000f89;
   color: white;
 }
 .pinkBackground{
-  background-color: deeppink;
-  color: white;
-}
-.blueBackground:hover{
-  border: 1px solid blue;
   background-color: white;
-  color: blue;
-}
-.pinkBackground:hover{
-  border: 1px solid deeppink;
-  background-color: white;
-  color: deeppink;
+  color:#000f89;
+  border: 1px solid #000f89;
 }
 
 .grid{
@@ -361,9 +446,48 @@ textarea{
 .hover-blue:hover{
   background-color: rgb(212, 212, 255);
 }
+.hero{
+  width: 50%;
+  text-align: left;
+}
+.landing-page img{
+   width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+.login-page{
+  background-color: #000f89;
+  height: 100vh;
+background: linear-gradient(#000f89, #2a41f1);
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
 
 
 @media (max-width: 600px) {
+  .landing-page{
+    flex-direction: column-reverse;
+    margin: 1rem;
+  }
+  .landing-page h1{
+    font-size: 1.5rem;
+    justify-content: center;
+    
+  }
+  .landing-page img{
+    width: 20rem;
+    height: auto;
+    margin: 0;
+  }
+  .hero{
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+  }
+  
   .menu{
     display: block;
   }
@@ -387,6 +511,12 @@ margin-top: 2rem;
   height: auto;
 
  }
+ .landing-page input{
+  padding-left: 1rem;
+  text-align: left;
+
+ }
+ 
  
  .flex-column-small{
   display: flex;
