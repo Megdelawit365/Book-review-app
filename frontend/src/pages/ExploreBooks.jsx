@@ -46,12 +46,12 @@ const ExploreBooks = () => {
     return (
         <>
             <NavBar />
-            <main>
-                <h4 className='flex-row'>Filter Books <IoIosArrowDown className=' small-screen align-right' onClick={() => setMenuOpen(!menuOpen)} /></h4>
+            <main  >
+                <h4 style={{margin:"0"}}>Filter Books <IoIosArrowDown className=' small-screen align-right' onClick={() => setMenuOpen(!menuOpen)} /></h4>
 
                 <div className={`filter-bar flex-row ${menuOpen ? 'expand flex-row flex-wrap ' : 'hide '}`}>
-                    <div className='flex-row align-left'>
-                        <p>Page Count</p>
+                    <div className='flex-column align-left'>
+                        <p>Number Of Pages</p>
                         <select onChange={(e) => setPageFilter(e.target.value)}>
                             <option value="-">-</option>
                             <option value="0-100"> 0-100</option>
@@ -64,7 +64,7 @@ const ExploreBooks = () => {
 
                         </select>
                     </div>
-                    <div className='flex-row align-left'>
+                    <div className='flex-column align-left'>
                         <p>Rating</p>
                         <select onChange={(e) => setRatingFilter(e.target.value)}>
                             <option value="-">-</option>
@@ -76,7 +76,7 @@ const ExploreBooks = () => {
 
                         </select>
                     </div >
-                    <div className='flex-row align-left'>
+                    <div className='flex-column align-left'>
                         <p>Genre</p>
                         <select onChange={(e) => setGenreFilter(e.target.value)}>
                             <option value="-">-</option>
@@ -87,7 +87,17 @@ const ExploreBooks = () => {
 
                         </select>
                     </div>
-                   
+                   <div className='flex-column align-left'>
+                        <p>Sort By</p>
+                        <select onChange={(e) => setGenreFilter(e.target.value)}>
+                            <option value="-">-</option>
+                            <option value="Fiction">Fiction</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="Romance">Romance</option>
+
+                        </select>
+                    </div>
 
                 </div>
 
@@ -101,6 +111,7 @@ const ExploreBooks = () => {
 
 
                 </div>
+                
             </main>
             <Footer />
         </>
