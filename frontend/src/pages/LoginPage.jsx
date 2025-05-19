@@ -4,6 +4,7 @@ import axios from 'axios';
 import NavBar1 from '../../Components/NavBar1';
 import Footer from '../../Components/Footer';
 import { ToastContainer, toast } from 'react-toastify';
+import { FaBookBookmark } from "react-icons/fa6";
 
 
 const LoginPage = () => {
@@ -32,10 +33,14 @@ const LoginPage = () => {
   };
   return (
     <>
-      <NavBar1 />
 
-      <main>
+      <div className='login-page'>
         <div className='signup-box'>
+          <Link to='/' className='flex-row big-font'>
+                                  <FaBookBookmark />
+                          
+                          <p>BOOKLIFY</p>
+                      </Link>
         <h2 style={{color:"#0000cd"}}>Login</h2>
         <form onSubmit={handleSubmit}>
 
@@ -50,13 +55,12 @@ const LoginPage = () => {
             <input onChange={(e) => setPassword(e.target.value)} type="password" name="" id="password" placeholder='password' />
           </div>
 
-          <button type='submit'>Login</button>
+          <button className='button2' type='submit'>Login</button>
         </form>
         <p>Dont have an Account? <Link to="/signup" style={{color:"#0000cd"}}>Signup</Link></p>
         </div>
         
-      </main>
-      <Footer/>
+      </div>
     </>
 
   )
