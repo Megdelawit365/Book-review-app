@@ -35,7 +35,7 @@ const BookDetails = () => {
         console.log(ratings)
       })
       .catch((err) => console.log(err))
-      axios.get('http://localhost:3000/loggedInUser', { withCredentials: true })
+    axios.get('http://localhost:3000/loggedInUser', { withCredentials: true })
       .then((res) => {
         if (res.data) {
           setUser(res.data.user)
@@ -53,17 +53,17 @@ const BookDetails = () => {
 
     axios.get(`http://localhost:3000/api/books/reviews/${id}`)
       .then((res) => {
-        setReviews(res.data||[])
+        setReviews(res.data || [])
       })
-    .catch((err) => {
-      console.log(err)
-    })
+      .catch((err) => {
+        console.log(err)
+      })
     axios.get(`http://localhost:3000/api/books/rating/${id}`)
       .then((res) => {
         const avg = res.data.averageRating;
         setAverage(avg ? avg : "No ratings yet");
       })
-      axios.get(`http://localhost:3000/books/saved/${id}`, { withCredentials: true })
+    axios.get(`http://localhost:3000/books/saved/${id}`, { withCredentials: true })
       .then((res) => {
         setIsSaved(res.data)
       })
@@ -74,7 +74,7 @@ const BookDetails = () => {
 
   }, [id])
 
-  
+
   const handleDelete = (reviewId) => {
     console.log("Deleting review with id:", reviewId);
     axios.delete(`http://localhost:3000/api/books/reviews/${reviewId}`)
@@ -89,7 +89,7 @@ const BookDetails = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (!review || !rating){
+    if (!review || !rating) {
       toast('please fill in all fields')
       return;
     }
@@ -101,7 +101,7 @@ const BookDetails = () => {
         toast('review added!')
       })
       .catch(err => {
-        if(err.status==401){
+        if (err.status == 401) {
           toast('login to submit review')
         }
       })
@@ -114,10 +114,10 @@ const BookDetails = () => {
       .catch(err => console.log(err))
 
     axios.get(`http://localhost:3000/api/books/rating/${id}`)
-          .then((res) => {
-            const avg = res.data.averageRating;
-            setAverage(avg ? avg : "No ratings yet");
-          })
+      .then((res) => {
+        const avg = res.data.averageRating;
+        setAverage(avg ? avg : "No ratings yet");
+      })
 
   }
   const handleSave = (e) => {
@@ -126,11 +126,11 @@ const BookDetails = () => {
       .then((res) => {
         setIsSaved(!isSaved)
         console.log(res.data.savedBooks)
-        if(isSaved){
+        if (isSaved) {
           toast('removed from favorites')
 
 
-        }else{
+        } else {
           toast('added to favorites')
 
         }
@@ -142,12 +142,12 @@ const BookDetails = () => {
 
   return (
     <>
-      <NavBar/>
+      <NavBar />
       <div className='book-details-container flex-column-small'>
         <div className='image-bar staticPosition'>
           <img src={book.imageURL} alt="" />
-        {user? <button onClick={handleSave} className={`${isSaved? 'blueBackground':'pinkBackground'}`}>{isSaved? "Remove From Favorites" :"Add to favorties"}</button>
-:""}
+          {user ? <button onClick={handleSave} className={`${isSaved ? 'blueBackground' : 'pinkBackground'}`}>{isSaved ? "Remove From Favorites" : "Add to favorties"}</button>
+            : ""}
         </div>
 
 
@@ -181,44 +181,53 @@ const BookDetails = () => {
 
           <h2>Reviews and Ratings</h2>
 
-          {showReviewForm && user&&
+
+
+
+          {user && (
             <>
-              <form onSubmit={handleSubmit}>
-                <textarea onChange={(e)=>setReview(e.target.value)} name="" id="" placeholder='Write your review here...'></textarea>
-                <div style={{ display: "flex", flexDirection: "row", alignItems:"center", justifyContent: "space-between", margin: "1rem 0" }}>
-                  <label htmlFor="">Rating: <input onChange={(e)=>setRating(e.target.value)} type="Number" min='1' max='5' /> </label>
-                  <button  type='submit'>Submit</button>
-                </div>
+              {showReviewForm && (
+                <form onSubmit={handleSubmit}>
+                  <textarea onChange={(e) => setReview(e.target.value)} name="" id="" placeholder='Write your review here...'></textarea>
+                  <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", margin: "1rem 0" }}>
+                    <label htmlFor="">Rating: <input onChange={(e) => setRating(e.target.value)} type="Number" min='1' max='5' /> </label>
+                    <button type='submit'>Submit</button>
+                  </div>
 
-              </form>
-              <button onClick={() => setShowReviewForm(!showReviewForm)}>{showReviewForm ? "Cancel" : "Write a review"}</button>
+                </form>
+              )}
 
-            </>}
+              <button onClick={() => setShowReviewForm(!showReviewForm)}>
+                {showReviewForm ? "Cancel" : "Write a review"}
+              </button>
+            </>
+          )}
 
 
 
 
-          {book.reviewCount == 0 && 
+
+
+          {book.reviewCount == 0 &&
             <div style={{ margin: "2rem 0", color: "#a7a7a7", fontStyle: "italic" }}>No Reviews Yet</div>
           }
 
-          {reviews&&reviews.length>0? reviews.map((review) => {
+          {reviews && reviews.length > 0 ? reviews.map((review) => {
             const newDate = new Date(review.date).toISOString().split('T')
 
             return <div key={review._id} style={{ display: "flex", flexDirection: "column", boxShadow: "0 0 0 1px rgba(0, 0, 0, 0.1)", borderRadius: "1rem", padding: "1rem 3rem", height: "fit-content", margin: "1rem 0" }}>
               <div style={{ display: "flex", fontSize: "0.8rem", color: "#a7a7a7", flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: "100%", margin: "0" }}>
                 <p style={{ margin: "0 0 1rem 0" }}>{review.username}</p>
                 <p style={{ margin: "0 0 1rem 0" }}><FaStar /> {review.rating}</p>
-
                 <p style={{ margin: "0 0 1rem 0" }}>{newDate[0]}</p>
               </div>
 
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <p style={{ margin: "0", padding: "0" }}>{review.review}</p>
-                {user&& user._id==review.user? <><MdDelete onClick={() => handleDelete(review._id)} /> </> : ""}
+                {user && user._id == review.user ? <><MdDelete onClick={() => handleDelete(review._id)} /> </> : ""}
               </div>
             </div>
-          }):('No reviews')}
+          }) : ('')}
 
 
         </div>
