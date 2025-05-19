@@ -5,6 +5,7 @@ import NavBar1 from '../../Components/NavBar1';
 import Footer from '../../Components/Footer';
 import { ToastContainer, toast } from 'react-toastify';
 
+import { FaBookBookmark } from "react-icons/fa6";
 
 
 const SignupPage = () => {
@@ -34,9 +35,13 @@ const SignupPage = () => {
     };
     return (
         <>
-        <NavBar1/>
-            <main >
+            <div className='login-page' >
                 <div className='signup-box'>
+                    <Link to='/' className='flex-row big-font'>
+                                                      <FaBookBookmark />
+                                              
+                                              <p>BOOKLIFY</p>
+                                          </Link>
                 <h2 style={{color:"#0000cd"}} >Signup</h2>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="">Username</label>
@@ -55,13 +60,12 @@ const SignupPage = () => {
                         <input onChange={(e) => setPassword(e.target.value)} type="password" name="" id="" placeholder='password' />
                     </div>
 
-                    <button type='submit'>Signup</button>
+                    <button className='button2' type='submit'>Signup</button>
                 </form>
                 <p>Have an Account? <Link to="/login" style={{color:"#0000cd"}}>Login</Link></p>
                 </div>
                 
-            </main>
-            <Footer/>
+            </div>
         </>
     )
 }
