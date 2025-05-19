@@ -65,10 +65,10 @@ const BookCard = ({ id }) => {
       <div className='book-card-right'>
         <h4 style={{ marginTop: "0", marginBottom: "0" }}>{book.title}</h4>
         <p style={{ fontSize: "0.8rem", color: "#a7a7a7", fontStyle: "italic" }}>{book.author}</p>
-        <p style={{ fontSize: "0.8rem", color: "#a7a7a7", fontStyle: "italic" }}>{book.genre} - {book.pageCount} pages - published in {book.publishYear}</p>
+        <p style={{ fontSize: "0.8rem", color: "#a7a7a7", fontStyle: "italic" }}>({book.publishYear})</p>
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
           <span><FaStar style={{ color: "#00a5cf", fontSize: "0.8rem" }} /> {average}</span>
-          {user? <> <FaBookmark onClick={handleSave} style={{ fontSize: "2rem", color: isSaved ? 'blue' : 'grey' }} />
+          {user? <> <FaBookmark onClick={handleSave} style={{ fontSize: "1.5rem", color: isSaved ? 'blue' : 'grey' }} />
           </> : ''}
         </div>
 
