@@ -13,6 +13,10 @@ import { FiLogIn } from "react-icons/fi";
 import axios from 'axios';
 import { FaSearch } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
+import { MdLibraryBooks } from "react-icons/md";
+import { FaBookBookmark } from "react-icons/fa6";
+import { FaRegBookmark } from "react-icons/fa6";
+
 
 
 
@@ -71,7 +75,8 @@ const NavBar = () => {
     return (
         <nav className='flex-row'>
             <Link to='/' className='flex-row big-font'>
-                <LiaSwatchbookSolid />
+                        <FaBookBookmark />
+                
                 <p>BOOKLIFY</p>
             </Link>
 
@@ -80,23 +85,32 @@ const NavBar = () => {
             <div className={`menu-bar ${menuOpen ? 'open' : ''}`}>
                 <IoCloseOutline className='close-icon' onClick={() => setMenuOpen(!menuOpen)} />
 
-                <form style={{ positon: "relative" }} className='search-form-2' onSubmit={handleSubmit} action="">
+               
+
+                {user ? <>
+                 <div className='flex-row'>
+                    <FaUserCircle style={{marginLeft:"0", width:"50%"}} className='icons'/>
+                    <div className='flex-column align-left'>
+                        <div style={{textAlign:"left", marginRight:"auto" }}>{user ? user.username : ''}</div>
+                        <div style={{ color: "#a7a7a7", fontStyle: "italic" }}>{user ? user.email : ''}</div>
+
+                    </div>
+                </div>
+                    </> : ""}
+
+                 <form style={{ positon: "relative" }} className='search-form-2' onSubmit={handleSubmit} action="">
                     <input type="text" onChange={(e) => setTitle(e.target.value)} className='mini-search-bar' placeholder='Search Books By Title' />
                     <button type='submit' className='search-btn-2'><FaSearch /></button>
                 </form >
-                <hr style={{ width: "100%" }} />
+                
 
-                {user ? <> <div style={{ color: "#a7a7a7", fontStyle: "italic" }}>{user ? user.username : ''}</div>
-                    <div style={{ color: "#a7a7a7", fontStyle: "italic" }}>{user ? user.email : ''}</div></> : ""}
-                <hr style={{ width: "100%" }} />
-
-                <Link to='/explore-books'><GoHome className='icons' /> Home</Link>
+                <Link to='/explore-books'><GoHome className='small-icons' /> Home</Link>
                 {user ? (
                     <>
 
-                        <Link to={`/user/saved-books/${user._id}`}><MdFavoriteBorder className='icons' /> Saved Books</Link>
-                        <Link to={`/user/reviews/${user._id}`}><PiNewspaperBold className='icons' /> My Reviews</Link>
-                        <Link to={`/add-book`}><IoIosAddCircleOutline className='icons' /> Add Book</Link>
+                        <Link to={`/user/saved-books/${user._id}`}><MdFavoriteBorder className='small-icons' /> Saved Books</Link>
+                        <Link to={`/user/reviews/${user._id}`}><PiNewspaperBold className='small-icons' /> My Reviews</Link>
+                        <Link to={`/add-book`}><IoIosAddCircleOutline className='small-icons' /> Add Book</Link>
 
                     </>
 
@@ -115,22 +129,27 @@ const NavBar = () => {
                 <FaUserCircle className='icons hide' onClick={() => setProfileOpen(!profileOpen)} />
 
             ) : (
-                <Link to='/login'><button className='hide'>Login</button></Link>
+                <Link to='/login'><button className='hide button2'>Login</button></Link>
 
             )}
 
             <div className={`${profileOpen ? 'profile-bar ' : 'close'}`}>
-                <div style={{ color: "#a7a7a7", fontStyle: "italic" }}>User:</div>
-                <div style={{ color: "#a7a7a7", fontStyle: "italic" }}>{user ? user.username : ''}</div>
-                <div style={{ color: "#a7a7a7", fontStyle: "italic" }}>{user ? user.email : ''}</div>
+                <div className='flex-row'>
+                    <FaUserCircle  style={{fontSize:"2.5rem", marginRight:"1rem"}}/>
+                    <div className='flex-column align-left'>
+                        <div style={{textAlign:"left", marginRight:"auto" }}>{user ? user.username : ''}</div>
+                        <div style={{ color: "#a7a7a7", fontStyle: "italic" }}>{user ? user.email : ''}</div>
+                    </div>
+                </div>
+                
 
                 <hr style={{ border: "1px solid #a7a7a7", width: "100%" }} />
                 {user && <>
-                    <Link to={`/user/saved-books/${user._id}`} className='hoverDark'>Saved Books</Link>
-                    <Link to={`/user/reviews/${user._id}`} className='hoverDark'>My Reviews</Link>
+                    <Link to={`/user/saved-books/${user._id}`} className='hoverDark align-center'> <FaRegBookmark className='small-icons' />Saved Books</Link>
+                    <Link to={`/user/reviews/${user._id}`} className='hoverDark'><PiNewspaperBold className='small-icons' />My Reviews</Link>
+                <Link to='/add-book' className='hoverDark'><IoIosAddCircleOutline className='small-icons' />Add Books</Link>
 
                 </>}
-                <Link to='/add-book' className='hoverDark'>Add Books</Link>
 
             </div>
 
