@@ -15,6 +15,7 @@ const ExploreBooks = () => {
     const [pageFilter, setPageFilter] = useState('-');
     const [genreFilter, setGenreFilter] = useState('-');
     const [ratingFilter, setRatingFilter] = useState('-');
+    const [author, setAuthor] = useState("")
 
 
     useEffect(() => {
@@ -25,8 +26,9 @@ const ExploreBooks = () => {
 
     
     }, [])
+   
 
-    const filteredBooks = pageFilter == '-' && genreFilter == '-' && ratingFilter == '-' ? books : (
+    const filteredBooks = pageFilter == '-' && genreFilter == '-' && ratingFilter == '-' && author=="" ? books : (
         books.filter(book => {
             const [minPage, maxPage] = pageFilter.split('-').map(Number)
             const [minRating, maxRating] = ratingFilter.split('-').map(Number)
@@ -34,9 +36,10 @@ const ExploreBooks = () => {
             const pageMatch = pageFilter === '-' || (book.pageCount >= minPage && book.pageCount <= maxPage)
             const genreMatch = genreFilter === '-' || (book.genre == genreFilter)
             const ratingMatch = ratingFilter === '-' || (book.rating >= minRating && book.rating <= maxRating)
+            const authorMatch = author ===""|| (book.author.toLowerCase() == author.toLowerCase())
 
         
-            return pageMatch && genreMatch && ratingMatch
+            return pageMatch && genreMatch && ratingMatch && authorMatch
 
         })
     )
@@ -54,12 +57,12 @@ const ExploreBooks = () => {
                         <p>Number Of Pages</p>
                         <select onChange={(e) => setPageFilter(e.target.value)}>
                             <option value="-">-</option>
-                            <option value="0-100"> 0-100</option>
-                            <option value="100-200"> 100-200</option>
-                            <option value="200-300"> 200-300</option>
-                            <option value="300-400"> 300-400</option>
-                            <option value="400-500"> 400-500</option>
-                            <option value="500-1000"> 500-1000</option>
+                            <option value="0-100">0-100</option>
+                            <option value="100-200">100-200</option>
+                            <option value="200-300">200-300</option>
+                            <option value="300-400">300-400</option>
+                            <option value="400-500">400-500</option>
+                            <option value="500-1000">500-1000</option>
 
 
                         </select>
@@ -82,21 +85,21 @@ const ExploreBooks = () => {
                             <option value="-">-</option>
                             <option value="Fiction">Fiction</option>
                             <option value="Fantasy">Fantasy</option>
-                            <option value="Adventure">Adventure</option>
-                            <option value="Romance">Romance</option>
+                            <option value="Science Fiction">Science Fiction</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Young Adult">Young Adult</option>
+                            <option value="Non-Fiction">Non-Fiction</option>
+                            <option value="Historical Fiction">Historical Fiction</option>
+                            <option value="Thriller">Thriller</option>
+                            <option value="Mystery">Mystery</option>
 
                         </select>
                     </div>
-                   <div className='flex-column align-left'>
-                        <p>Sort By</p>
-                        <select onChange={(e) => setGenreFilter(e.target.value)}>
-                            <option value="-">-</option>
-                            <option value="Fiction">Fiction</option>
-                            <option value="Fantasy">Fantasy</option>
-                            <option value="Adventure">Adventure</option>
-                            <option value="Romance">Romance</option>
+                   
 
-                        </select>
+                    <div className='flex-column align-center'>
+                        <p style={{marginBottom:"0"}}>Author</p>
+                            <input style={{marginTop:"0.3rem", paddingTop:"0.5rem",  paddingBottom:"0.5rem"}} onChange={(e)=>setAuthor(e.target.value)} type="text" />
                     </div>
 
                 </div>
