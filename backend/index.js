@@ -10,6 +10,9 @@ const bookRoutes = require('./Routes/bookRoutes')
 const reviewRoutes = require('./Routes/reviewRoutes')
 const userRoutes = require('./Routes/userRoutes')
 const port = process.env.PORT
+const Book = require('./models/Book-model')
+
+const books = require('./books.json');
 
 
 
@@ -23,7 +26,17 @@ app.use(cors({
 app.use(cookieParser());
 
 mongoose.connect(process.env.DB_URL)
-    .then(res=>console.log("mongodb connected"))
+    .then(async(res)=>{
+        
+        console.log("mongodb connected");
+        const existingBooks = await Book.find({});
+        if(existingBooks.length==0){
+            await Book.insertMany(books);
+            console.log('books added');
+        }else{
+            console.log('books already added')
+        }
+    }).catch((err)=>console.log(err.message))
 
     app.get('/', (req, res) => {
         res.send('Server is up and running!');

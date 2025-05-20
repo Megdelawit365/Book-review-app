@@ -14,11 +14,7 @@ const NavBar1 = () => {
         <div className='flex-row align-right hide'>
           <Link to='/explore-books'>Explore Books</Link>
           <Link to='/login'><button >Login</button></Link>
-<<<<<<< HEAD
           <Link to='/signup'><button className='button2' >Signup</button></Link>
-=======
-                    <Link to='/signup'><button className='button2' >Signup</button></Link>
->>>>>>> 4b130774228cedae3a5835e9e7488e024260aeb8
 
           
           

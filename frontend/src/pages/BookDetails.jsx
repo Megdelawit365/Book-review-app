@@ -165,6 +165,8 @@ const BookDetails = () => {
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "left", alignItems: "flex-start", width: "60%", gap: "0.5rem" }}>
               <p style={{ margin: "0", color: "#a7a7a7", fontStyle: "italic" }}>Year Published: {book.publishYear}</p>
               <p style={{ margin: "0", color: "#a7a7a7", fontStyle: "italic" }}>Genre: {book.genre}</p>
+                            <p style={{ margin: "0", color: "#a7a7a7", fontStyle: "italic" }}> {book.pageCount} pages</p>
+
             </div>
           </div>
 

@@ -114,7 +114,7 @@ const NavBar = () => {
 
                     </>
 
-                ) : (<Link to='/login'><FiLogIn className='icons' /> Login</Link>
+                ) : (<Link to='/login'><FiLogIn className='small-icons' /> Login</Link>
 
                 )
                 }
