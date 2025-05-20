@@ -39,6 +39,25 @@ button{
    border: 1px solid #000f89;
 
 }
+<<<<<<< HEAD
+button:hover{
+  background-color:#d5d9fd ;
+=======
+
+.button2{
+  background-color: #000f89;
+  color: white;
+>>>>>>> 4b130774228cedae3a5835e9e7488e024260aeb8
+}
+.button2:hover{
+    background-color: #4d5feb;
+
+}
+/* button:hover{
+  background-color: #000f89;
+  color:white;
+  
+} */
 
 .button2{
   background-color: #000f89;
@@ -80,7 +99,7 @@ main{
 }
 .landing-page{
   text-align: center;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,7 +108,11 @@ main{
   background-size: cover;
   background-position: center;
   margin: 1rem;
+<<<<<<< HEAD
+  padding-top: 0;
+=======
   margin-top: 1rem;
+>>>>>>> 4b130774228cedae3a5835e9e7488e024260aeb8
 }
 
 .landing-page h1, h2{
@@ -349,7 +372,7 @@ textarea{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 82vh;
+  height: 88vh;
   width: fit-content;
   box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.1);
   padding: 0 3rem 3rem 3rem;
@@ -464,10 +487,22 @@ display: flex;
 justify-content: center;
 align-items: center;
 }
+<<<<<<< HEAD
+.show{
+  display: none;
+}
+=======
+>>>>>>> 4b130774228cedae3a5835e9e7488e024260aeb8
 
 
 
 @media (max-width: 600px) {
+<<<<<<< HEAD
+  .show{
+    display: block;
+  }
+=======
+>>>>>>> 4b130774228cedae3a5835e9e7488e024260aeb8
   .landing-page{
     flex-direction: column-reverse;
     margin: 1rem;
@@ -487,6 +522,12 @@ align-items: center;
     text-align: center;
     font-size: 1rem;
   }
+<<<<<<< HEAD
+  .search-btn-3{
+    display: none;
+  }
+=======
+>>>>>>> 4b130774228cedae3a5835e9e7488e024260aeb8
   
   .menu{
     display: block;
