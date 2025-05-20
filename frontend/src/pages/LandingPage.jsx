@@ -41,19 +41,10 @@ const LandingPage = () => {
     <>
     <NavBar1/>
     <main className='landing-page'>
-      <div className='align-left hero' >
-        <h2>Welcome to <span style={{color:"#000f89", fontWeight:"500"}}>Booklify</span></h2>
-        <h1 >Discover Books, Read and Write Reviews, Save Favorites and more</h1>
-        <form onSubmit={handleSubmit} action="">
-          <input onChange={(e) => setTitle(e.target.value)} type="text" name="" id="" placeholder='Search Books' />
-          <button type='submit' className='search-btn-3'><FaSearch  style={{color:'white', fontSize:"1.2rem"}} /></button>
-          
-        </form>
-      </div>
-      <div >
-          <img  src="https://img.freepik.com/free-vector/hand-drawn-glossary-illustration_23-2150287904.jpg?ga=GA1.1.1140237115.1747585731&semt=ais_hybrid&w=740" alt="" />
-      </div>
-        
+        <h1>Welcome to <span style={{color:"#0000cd"}}>Booklify</span></h1>
+        <h3>Discover Books, Read and Write Reviews, Save Favorites and more</h3>
+        <Link to='/Signup'><button>Signup</button></Link>
+        <Link to='/explore-books'><button>Explore Books</button></Link>
     </main>
     <Footer/>
     </>
