@@ -12,18 +12,18 @@ const BookCard = ({ id }) => {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    axios.get(`https://book-review-app-1-1hd8.onrender.com/api/books/rating/${id}`)
+    axios.get(`http://localhost:3000/api/books/rating/${id}`)
       .then((res) => {
         const avg = res.data.averageRating;
         setAverage(avg ? avg : "--");
       })
 
-    axios.get(`https://book-review-app-1-1hd8.onrender.com/api/books/${id}`)
+    axios.get(`http://localhost:3000/api/books/${id}`)
       .then((res) => {
         setBook(res.data);
       })
 
-    axios.get(`https://book-review-app-1-1hd8.onrender.com/books/saved/${id}`, { withCredentials: true })
+    axios.get(`http://localhost:3000/books/saved/${id}`, { withCredentials: true })
       .then((res) => {
         setIsSaved(res.data)
       })
@@ -31,7 +31,7 @@ const BookCard = ({ id }) => {
         console.log({ error: err.message })
       })
 
-    axios.get('https://book-review-app-1-1hd8.onrender.com/loggedInUser', { withCredentials: true })
+    axios.get('http://localhost:3000/loggedInUser', { withCredentials: true })
       .then((res) => {
         if (res.data) {
           setUser(res.data.user)
@@ -50,7 +50,7 @@ const BookCard = ({ id }) => {
 
   const handleSave = (e) => {
     e.preventDefault()
-    axios.patch(`https://book-review-app-1-1hd8.onrender.com/books/save/${id}`, {}, { withCredentials: true })
+    axios.patch(`http://localhost:3000/books/save/${id}`, {}, { withCredentials: true })
       .then((res) => {
         setIsSaved(!isSaved)
         console.log(res.data.savedBooks)
