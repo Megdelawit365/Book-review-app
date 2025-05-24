@@ -19,7 +19,7 @@ const ExploreBooks = () => {
 
 
     useEffect(() => {
-        axios.get('https://book-review-app-1-1hd8.onrender.com/api/books')
+        axios.get('http://localhost:3000/api/books')
             .then((res) => setBooks(res.data))
             .catch((err) => console.log(err.message))
 
