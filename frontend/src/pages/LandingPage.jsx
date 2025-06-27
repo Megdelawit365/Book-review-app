@@ -4,7 +4,7 @@ import Footer from '../../Components/Footer'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaSearch } from "react-icons/fa";
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
 
 
 
