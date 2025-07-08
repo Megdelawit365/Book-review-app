@@ -1,0 +1,48 @@
+.bestseller-books-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    justify-items: center;
+}
+
+.bestseller-books-container img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    border-radius: 0.8rem;
+}
+.explore-header{
+    margin: 1rem;
+    margin-top: 3rem;
+}
+.options-tab{
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    max-width: 100%;
+    margin: 0 1rem;
+    margin-top: 3rem;
+    border-radius: 0.5rem;
+    overflow-x: scroll;
+}
+
+.options-tab p{
+    background-color: rgba(0,0,0,0.05);
+    padding: 0.6rem;
+    border-radius: 0.5rem;
+    white-space: nowrap;
+}
+
+.options-tab::-webkit-scrollbar {
+  height: 6px;
+}
+
+.options-tab::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
+
+.options-tab::-webkit-scrollbar-track {
+  background: transparent;
+}
