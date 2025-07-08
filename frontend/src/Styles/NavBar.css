@@ -10,7 +10,6 @@ nav {
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     background-color: white;
     z-index: 100;
-
 }
 
 nav div {
@@ -29,10 +28,11 @@ nav h1 {
     font-weight: 500;
 }
 
-nav a {
+.links-container a {
     font-size: 0.9rem;
     color: rgba(0, 0, 0, 0.5);
     padding: 0.8rem 0;
+    box-sizing: border-box;
 }
 
 nav .active-links {
@@ -71,4 +71,20 @@ nav button a {
 
 nav .links-container {
     gap: 2rem;
+}
+
+.links-container a:hover{
+    color: black;
+}
+
+footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.5);
+    padding: 3rem 0;
+}
+
+footer p {
+    font-size: 0.8rem;
+
 }
