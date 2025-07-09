@@ -11,11 +11,13 @@
     aspect-ratio: 2 / 3;
     border-radius: 0.8rem;
 }
-.explore-header{
+
+.explore-header {
     margin: 1rem;
     margin-top: 3rem;
 }
-.options-tab{
+
+.options-tab {
     padding: 0.5rem;
     display: flex;
     flex-direction: row;
@@ -23,26 +25,42 @@
     max-width: 100%;
     margin: 0 1rem;
     margin-top: 3rem;
-    border-radius: 0.5rem;
     overflow-x: scroll;
+    position: sticky;
+    top:2.9rem;
+    background-color: white;
 }
 
-.options-tab p{
-    background-color: rgba(0,0,0,0.05);
-    padding: 0.6rem;
+.options-tab button {
+    all: unset;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.5rem 0.6rem;
     border-radius: 0.5rem;
     white-space: nowrap;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
 }
-
+.options-tab .selected-option{
+    background-color: black;
+    color: white;
+}
 .options-tab::-webkit-scrollbar {
-  height: 6px;
+    height: 3px;
 }
 
 .options-tab::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 3px;
+    background-color: #ccc;
+    border-radius: 3px;
 }
 
 .options-tab::-webkit-scrollbar-track {
-  background: transparent;
+    background: transparent;
+}
+
+@media (max-width:780px) {
+    .bestseller-books-container {
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    }
 }
