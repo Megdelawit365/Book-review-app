@@ -70,3 +70,9 @@ h1 {
 @keyframes spin {
   to {transform: rotate(360deg);}
 }
+
+@media (max-width:700px) {
+  .small-screen-hide{
+    display: none;
+  }
+}
