@@ -27,7 +27,7 @@
     margin-top: 3rem;
     overflow-x: scroll;
     position: sticky;
-    top:2.9rem;
+    top: 2.9rem;
     background-color: white;
 }
 
@@ -42,10 +42,12 @@
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
 }
-.options-tab .selected-option{
+
+.options-tab .selected-option {
     background-color: black;
     color: white;
 }
+
 .options-tab::-webkit-scrollbar {
     height: 3px;
 }
