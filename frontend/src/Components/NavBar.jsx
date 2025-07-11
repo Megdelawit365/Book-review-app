@@ -38,17 +38,23 @@ const NavBar = () => {
                     <FaSearch className='icon' />
                 </form>
                 <button><Link>Sign up</Link></button>
-                {searchQuery != "" &&
-                    <div className='search-result'>
-                        {searchResult?.map((result, index) => {
-                            return <div key={index}>
-                                <img src={result?.volumeInfo?.imageLinks?.thumbnail} alt="" />
-                                <p  >{result.volumeInfo.title}</p>
-                            </div>
-                        })}
-                        <Link>See All Results</Link>
-                    </div>
+                {
+                    searchQuery != "" && searchResult ?
 
+                        <div className='search-result'>
+                            {searchResult.map((result, index) => {
+                                return <div key={index}>
+                                    <img src={result?.volumeInfo?.imageLinks?.thumbnail} alt="" />
+                                    <p  >{result.volumeInfo.title}</p>
+                                </div>
+                            })}
+                            <Link>See All Results</Link>
+                        </div>
+                        : searchQuery != "" && !searchResult ?
+                            <div className='search-result'>
+                                <Link>No results found :(</Link>
+                            </div>
+                            : <></>
                 }
 
             </div>
