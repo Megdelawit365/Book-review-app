@@ -1,9 +1,23 @@
-.bestseller-books-container {
+.bestseller-books-container.grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
     gap: 1rem;
     padding: 1rem;
     justify-items: center;
+}
+
+.bestseller-books-container.list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem;
+}
+
+.bestseller-books-container .book-card {
+    box-sizing: border-box;
+    width: 60%;
+
 }
 
 .bestseller-books-container img {
@@ -24,11 +38,8 @@
     gap: 1rem;
     max-width: 100%;
     margin: 0 1rem;
-    margin-top: 3rem;
     overflow-x: scroll;
-    position: sticky;
-    top: 2.9rem;
-    background-color: white;
+    scroll-behavior: smooth;
 }
 
 .options-tab button {
@@ -49,20 +60,240 @@
 }
 
 .options-tab::-webkit-scrollbar {
-    height: 3px;
+    display: none;
 }
 
-.options-tab::-webkit-scrollbar-thumb {
-    background-color: #ccc;
-    border-radius: 3px;
+
+.options-wrapper {
+    display: flex;
+    align-items: center;
+    margin: 0 1rem;
+    position: sticky;
+    top: 2.9rem;
+    background-color: white;
+    margin-top: 3rem;
 }
 
-.options-tab::-webkit-scrollbar-track {
-    background: transparent;
+.scroll-btn {
+    all: unset;
+    cursor: pointer;
+    padding: 0.8rem;
+    padding-bottom: 0.5rem;
+    border-radius: 3rem;
+    transition: background-color 0.2s ease;
+}
+
+.scroll-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.filter-btn {
+    width: fit-content;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: white;
+    color: black;
+    padding: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-left: 1.5rem;
+}
+
+.filter-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.view-toggle {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+
+.view-toggle button {
+    background: none;
+    border: none;
+    padding: 0.25rem;
+    cursor: pointer;
+    border-radius: 0;
+    color: #555;
+    transition: background 0.2s ease;
+}
+
+.view-toggle button.active {
+    background-color: #6262f9;
+    color: white;
+}
+
+.list.active {
+    border-bottom-right-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+.grid.active {
+    border-bottom-left-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
 }
 
 @media (max-width:780px) {
     .bestseller-books-container {
-        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(1rem, 2fr));
+    }
+
+    .bestseller-books-container .book-card {
+        width: 100%;
+    }
+}.bestseller-books-container.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    justify-items: center;
+}
+
+.bestseller-books-container.list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem;
+}
+
+.bestseller-books-container .book-card {
+    box-sizing: border-box;
+    width: 60%;
+
+}
+
+.bestseller-books-container img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    border-radius: 0.8rem;
+}
+
+.explore-header {
+    margin: 1rem;
+    margin-top: 3rem;
+}
+
+.options-tab {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    max-width: 100%;
+    margin: 0 1rem;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+}
+
+.options-tab button {
+    all: unset;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.5rem 0.6rem;
+    border-radius: 0.5rem;
+    white-space: nowrap;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.options-tab .selected-option {
+    background-color: black;
+    color: white;
+}
+
+.options-tab::-webkit-scrollbar {
+    display: none;
+}
+
+
+.options-wrapper {
+    display: flex;
+    align-items: center;
+    margin: 0 1rem;
+    position: sticky;
+    top: 2.9rem;
+    background-color: white;
+    margin-top: 3rem;
+}
+
+.scroll-btn {
+    all: unset;
+    cursor: pointer;
+    padding: 0.8rem;
+    padding-bottom: 0.5rem;
+    border-radius: 3rem;
+    transition: background-color 0.2s ease;
+}
+
+.scroll-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.filter-btn {
+    width: fit-content;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: white;
+    color: black;
+    padding: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-left: 1.5rem;
+}
+
+.filter-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.view-toggle {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+
+.view-toggle button {
+    background: none;
+    border: none;
+    padding: 0.25rem;
+    cursor: pointer;
+    border-radius: 0;
+    color: #555;
+    transition: background 0.2s ease;
+}
+
+.view-toggle button.active {
+    background-color: #6262f9;
+    color: white;
+}
+
+.list.active {
+    border-bottom-right-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+.grid.active {
+    border-bottom-left-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
+}
+
+@media (max-width:780px) {
+    .bestseller-books-container {
+        grid-template-columns: repeat(auto-fit, minmax(1rem, 2fr));
+    }
+
+    .bestseller-books-container .book-card {
+        width: 100%;
     }
 }
