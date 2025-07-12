@@ -9,6 +9,7 @@ import { FaChevronLeft, FaChevronRight, FaChevronDown } from 'react-icons/fa'
 import { MdGridView, MdTune, MdViewList } from 'react-icons/md';
 
 import { FaSliders } from 'react-icons/fa6';
+import { Link } from 'react-router-dom'
 
 
 
@@ -174,9 +175,11 @@ const Explore = () => {
             :
             fiction?.map((book, index) => (
               view == "grid" ?
-                <img src={book.book_image} key={index} alt="" />
+                <Link to={`/details/${book.isbns[0].isbn13}`} state={{ title: book.title, author: book.author, image: book.book_image, author: book.author, isbn: book.isbns[0].isbn13 }}>
+                  <img src={book.book_image} key={index} alt="" />
+                </Link>
                 :
-                <BookCard className="book-cards" image={book.book_image} title={book.title} description={book.description} author={book.author} />
+                <BookCard key={index} className="book-cards" image={book.book_image} title={book.title} description={book.description} author={book.author} />
 
             ))
           }
