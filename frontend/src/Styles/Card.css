@@ -38,11 +38,16 @@
     width: fit-content;
 }
 
-.book-card .btn-container {
+.btn-container {
     display: flex;
     gap: 1rem;
     align-items: center;
     flex-wrap: wrap;
+}
+
+.btn-container button {
+    border-radius: 0;
+    width: fit-content;
 }
 
 .book-card .details .light {
