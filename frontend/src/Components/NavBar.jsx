@@ -55,8 +55,6 @@ const NavBar = () => {
                                 <Link>No results found :(</Link>
                             </div>
                             : <></>
-
-
                 }
 
             </div>
