@@ -1,10 +1,18 @@
 import React from 'react'
 import '../Styles/Card.css'
-const BookCard = ({ image, title }) => {
+const BookCard = ({ image, title, description, author }) => {
   return (
     <div className='book-card'>
       <img src={image} alt="" />
-      <p>{title}</p>
+      <div className='details'>
+        <h1>{title}</h1>
+        <p>By {author}</p>
+        <p className='light'>{description}</p>
+        <div className='btn-container'>
+          <button>Find on Amazon</button>
+          <button>Want to read</button>
+        </div>
+      </div>
     </div>
   )
 }

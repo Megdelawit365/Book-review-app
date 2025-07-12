@@ -16,6 +16,15 @@
     gap: 1rem;
     font-size: 1.1rem;
     color: rgba(0, 0, 0, 0.5);
+    transition: color 0.3s ease-in-out;
+}
+
+.hero-icons-container * {
+    cursor: pointer;
+}
+
+.hero-icons-container *:hover {
+    color: black;
 }
 
 .hero-section h1 {

@@ -97,7 +97,33 @@ router.get("/api/searchGoogleBooks", async (req, res) => {
   const query = req.query.q;
   try {
     const result = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=20&langRestrict=en`
+      `https://www.googleapis.com/books/v1/volumes?q=intitle:${query}&maxResults=20&langRestrict=en&printType=books`
+    );
+    const searchResult = await result.json();
+    res.json(searchResult);
+  } catch (err) {
+    console.error("Failed to fetch books:", err);
+  }
+});
+
+router.get("/api/searchGoogleBooks/isbn", async (req, res) => {
+  const query = req.query.q;
+  try {
+    const result = await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=isbn:${query}&maxResults=20&langRestrict=en&printType=books`
+    );
+    const searchResult = await result.json();
+    res.json(searchResult);
+  } catch (err) {
+    console.error("Failed to fetch books:", err);
+  }
+});
+
+router.get("/api/searchGoogleBooks/author", async (req, res) => {
+  const query = req.query.q;
+  try {
+    const result = await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=inauthor:${query}&maxResults=20&langRestrict=en&printType=books`
     );
     const searchResult = await result.json();
     res.json(searchResult);

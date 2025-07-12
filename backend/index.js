@@ -2,8 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 dotenv.config();
-const path = require("path");
-
 
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
@@ -46,11 +44,3 @@ app.use("/", bookRoutes);
 // app.use("/", userRoutes);
 // app.use("/", reviewRoutes);
 app.listen(port, () => console.log(`listening on port ${port}`));
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
-
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname, "../frontend/dist", "index.html"))
-  );
-}
