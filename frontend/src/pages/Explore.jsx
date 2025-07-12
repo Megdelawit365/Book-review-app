@@ -179,7 +179,10 @@ const Explore = () => {
                   <img src={book.book_image} key={index} alt="" />
                 </Link>
                 :
-                <BookCard key={index} className="book-cards" image={book.book_image} title={book.title} description={book.description} author={book.author} />
+                <Link to={`/details/${book.isbns[0].isbn13}`} state={{ title: book.title, author: book.author, image: book.book_image, author: book.author, isbn: book.isbns[0].isbn13 }}>
+
+                  <BookCard key={index} className="book-cards" image={book.book_image} title={book.title} description={book.description} author={book.author} />
+                </Link>
 
             ))
           }
