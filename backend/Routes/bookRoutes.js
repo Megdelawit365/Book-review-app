@@ -3,7 +3,7 @@ const Book = require("../models/Book-model");
 const mongoose = require("mongoose");
 const router = express.Router();
 
-router.get("/api/nyt", async (req, res) => {
+router.get("/nyt", async (req, res) => {
   try {
     const fictionHardcover = await fetch(
       `https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${process.env.NYT_API}`
@@ -93,7 +93,7 @@ router.get("/api/nyt", async (req, res) => {
   }
 });
 
-router.get("/api/searchGoogleBooks", async (req, res) => {
+router.get("/searchGoogleBooks", async (req, res) => {
   const query = req.query.q;
   try {
     const result = await fetch(
@@ -106,7 +106,7 @@ router.get("/api/searchGoogleBooks", async (req, res) => {
   }
 });
 
-router.get("/api/searchGoogleBooks/isbn", async (req, res) => {
+router.get("/searchGoogleBooks/isbn", async (req, res) => {
   const query = req.query.q;
   try {
     const result = await fetch(
@@ -119,7 +119,7 @@ router.get("/api/searchGoogleBooks/isbn", async (req, res) => {
   }
 });
 
-router.get("/api/searchGoogleBooks/author", async (req, res) => {
+router.get("/searchGoogleBooks/author", async (req, res) => {
   const query = req.query.q;
   try {
     const result = await fetch(
