@@ -11,8 +11,6 @@ import { MdGridView, MdTune, MdViewList } from 'react-icons/md';
 import { FaSliders } from 'react-icons/fa6';
 import { Link } from 'react-router-dom'
 
-
-
 const apiURL = import.meta.env.VITE_API_URL
 
 const Explore = () => {
@@ -175,15 +173,14 @@ const Explore = () => {
             :
             fiction?.map((book, index) => (
               view == "grid" ?
-                <Link to={`/details/${book.isbns[0].isbn13}`} state={{ title: book.title, author: book.author, image: book.book_image, author: book.author, isbn: book.isbns[0].isbn13 }}>
-                  <img src={book.book_image} key={index} alt="" />
+                <Link key={index} to={`/details/${book.isbns[0].isbn13}`} state={{ title: book.title, image: book.book_image, author: book.author, isbn: book.isbns[0].isbn13 }}>
+                  <img src={book.book_image} alt="" />
                 </Link>
                 :
-                <Link to={`/details/${book.isbns[0].isbn13}`} state={{ title: book.title, author: book.author, image: book.book_image, author: book.author, isbn: book.isbns[0].isbn13 }}>
+                <Link key={index} to={`/details/${book.isbns[0].isbn13}`} state={{ title: book.title, image: book.book_image, author: book.author, isbn: book.isbns[0].isbn13 }}>
 
-                  <BookCard key={index} className="book-cards" image={book.book_image} title={book.title} description={book.description} author={book.author} />
+                  <BookCard className="book-cards" image={book.book_image} title={book.title} description={book.description} author={book.author} />
                 </Link>
-
             ))
           }
         </div>
