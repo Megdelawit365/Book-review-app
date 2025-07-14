@@ -75,6 +75,13 @@
         color: rgba(0, 0, 0, 0.7);
     }
 
+    .book-details .top .right-half .description .spinner {
+        margin-top: 0;
+        margin: auto;
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
     .book-details .top .right-half .star-rating p {
         color: rgba(0, 0, 0, 0.5);
     }
@@ -129,6 +136,12 @@
         padding: 1rem;
     }
 
+    .more-books-section img {
+        height: 15rem;
+        aspect-ratio: 2/3;
+        border-radius: 0.8rem;
+    }
+
     .more-books-section .img-container::-webkit-scrollbar {
         height: 4px;
     }
@@ -142,7 +155,6 @@
         background-color: #f1f1f1;
     }
 
-    .more-books-section .img-container img {}
 
 
 
