@@ -15,7 +15,7 @@ const NavBar = () => {
 
     useEffect(() => {
 
-        axios.get(`${apiURL}/api/searchGoogleBooks?q=${searchQuery}`)
+        axios.get(`${apiURL}/searchGoogleBooks?q=${searchQuery}`)
             .then((res) => {
                 console.log(res.data.items)
                 setSearchResult(res.data.items)
