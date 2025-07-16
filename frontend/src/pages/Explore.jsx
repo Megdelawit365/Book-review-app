@@ -11,29 +11,41 @@ import { MdGridView, MdTune, MdViewList } from 'react-icons/md';
 import { FaSliders } from 'react-icons/fa6';
 import { Link } from 'react-router-dom'
 
+
+
 const apiURL = import.meta.env.VITE_API_URL
 
 const Explore = () => {
 
   const [isLoading, setIsLoading] = useState(true)
   const [fiction, setFiction] = useState([])
+  const [filteredBooks, setFilteredBooks] = useState([])
   const [selectedOption, setSelectedOption] = useState('all')
   const [view, setView] = useState("grid")
+  const [category, setCategory] = useState('all')
 
 
   useEffect(() => {
+    setIsLoading(true);
 
-    axios.get(`${apiURL}/nyt`)
+    axios.get(`${apiURL}/books`)
       .then((res) => {
-        const fiction1 = (res.data.fictionHardcover.results?.books)
-        const fiction2 = (res.data.combinedFiction.results?.books)
-        // const fiction3 = (res.data.tradeFiction.results?.books)
-        // const fiction4 = (res.data.massFiction.results?.books)
-        setFiction([...fiction1, ...fiction2])
-        setIsLoading(false)
+        const allBooks = res.data;
+        setFiction(allBooks);
+
+        const filtered = category === 'all'
+          ? allBooks
+          : allBooks.filter(book => book.nytlist === category);
+
+        setFilteredBooks(filtered);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(true)
       })
 
-  }, [])
+  }, [category])
 
   const scrollRight = () => {
     document.getElementById('optionsScroll').scrollBy({ left: -200, behavior: 'smooth' });
@@ -51,7 +63,7 @@ const Explore = () => {
           <div className='options-tab' id="optionsScroll">
             <button
               value="all"
-              onClick={() => setSelectedOption("all")}
+              onClick={() => { setSelectedOption("all"), setCategory("all") }}
               className={selectedOption === "all" ? "selected-option" : ""}
             >
               All
@@ -59,39 +71,27 @@ const Explore = () => {
 
             <button
               value="combinedFiction"
-              onClick={() => setSelectedOption("combinedFiction")}
+              onClick={() => { setSelectedOption("combinedFiction"), setCategory("Fiction") }}
               className={selectedOption === "combinedFiction" ? "selected-option" : ""}
             >
               Fiction - print and e-books
             </button>
 
-            <button
-              value="audioFiction"
-              onClick={() => setSelectedOption("audioFiction")}
-              className={selectedOption === "audioFiction" ? "selected-option" : ""}
-            >
-              Fiction - audio books
-            </button>
+
 
             <button
               value="yaHardcover"
-              onClick={() => setSelectedOption("yaHardcover")}
+              onClick={() => { setSelectedOption("yaHardcover"), setCategory("youngAdult") }}
               className={selectedOption === "yaHardcover" ? "selected-option" : ""}
             >
               Young Adult
             </button>
 
-            <button
-              value="middleGradeHardcover"
-              onClick={() => setSelectedOption("middleGradeHardcover")}
-              className={selectedOption === "middleGradeHardcover" ? "selected-option" : ""}
-            >
-              Middle Grade
-            </button>
+
 
             <button
               value="childrensSeries"
-              onClick={() => setSelectedOption("childrensSeries")}
+              onClick={() => { setSelectedOption("childrensSeries"), setCategory('children') }}
               className={selectedOption === "childrensSeries" ? "selected-option" : ""}
             >
               Children's series
@@ -99,7 +99,7 @@ const Explore = () => {
 
             <button
               value="graphicManga"
-              onClick={() => setSelectedOption("graphicManga")}
+              onClick={() => { setSelectedOption("graphicManga"), setCategory("graphicFiction") }}
               className={selectedOption === "graphicManga" ? "selected-option" : ""}
             >
               Graphic Novels & Manga - Fiction
@@ -107,31 +107,15 @@ const Explore = () => {
 
             <button
               value="combinedNonfiction"
-              onClick={() => setSelectedOption("combinedNonfiction")}
+              onClick={() => { setSelectedOption("combinedNonfiction"), setCategory("nonfiction") }}
               className={selectedOption === "combinedNonfiction" ? "selected-option" : ""}
             >
               Non-fiction print and e-books
             </button>
 
             <button
-              value="audioNonfiction"
-              onClick={() => setSelectedOption("audioNonfiction")}
-              className={selectedOption === "audioNonfiction" ? "selected-option" : ""}
-            >
-              Non-fiction - audio books
-            </button>
-
-            <button
-              value="graphicNonfiction"
-              onClick={() => setSelectedOption("graphicNonfiction")}
-              className={selectedOption === "graphicNonfiction" ? "selected-option" : ""}
-            >
-              Graphic Novels & Manga - Non-fiction
-            </button>
-
-            <button
               value="adviceMisc"
-              onClick={() => setSelectedOption("adviceMisc")}
+              onClick={() => { setSelectedOption("adviceMisc"), setCategory("adviceMisc") }}
               className={selectedOption === "adviceMisc" ? "selected-option" : ""}
             >
               Advice, How-To & Miscellaneous
@@ -139,12 +123,11 @@ const Explore = () => {
 
             <button
               value="businessBooks"
-              onClick={() => setSelectedOption("businessBooks")}
+              onClick={() => { setSelectedOption("businessBooks"), setCategory("business") }}
               className={selectedOption === "businessBooks" ? "selected-option" : ""}
             >
               Business
             </button>
-            <button className='right-btn'>right</button>
 
 
           </div>
@@ -171,16 +154,17 @@ const Explore = () => {
           {isLoading ?
             <div className='spinner' />
             :
-            fiction?.map((book, index) => (
+            filteredBooks?.map((book, index) => (
               view == "grid" ?
-                <Link key={index} to={`/details/${book.isbns[0].isbn13}`} state={{ title: book.title, image: book.book_image, author: book.author, isbn: book.isbns[0].isbn13 }}>
-                  <img src={book.book_image} alt="" />
+                <Link key={index} to={`/details/${book}`} state={{ title: book.title, image: book.imageURL, author: book.author, isbn: book.isbn }}>
+                  <img src={book.imageURL} alt="" />
                 </Link>
                 :
-                <Link key={index} to={`/details/${book.isbns[0].isbn13}`} state={{ title: book.title, image: book.book_image, author: book.author, isbn: book.isbns[0].isbn13 }}>
+                <Link key={index} to={`/details/${book}`} state={{ title: book.title, image: book.imageURL, author: book.author, isbn: book.isbn }}>
 
-                  <BookCard className="book-cards" image={book.book_image} title={book.title} description={book.description} author={book.author} />
+                  <BookCard className="book-cards" image={book.imageURL} title={book.title} description={book.description} author={book.author} />
                 </Link>
+
             ))
           }
         </div>
