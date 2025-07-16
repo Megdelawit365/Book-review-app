@@ -13,29 +13,36 @@ const bookSchema = new mongoose.Schema({
         required: true,
         type: Number
     },
-    genre:{
+    genre: {
         type: String
     },
-    description:{
+    description: {
         type: String,
         // required: true
     },
-    rating:{
-        type:[Number],
+    rating: {
+        type: [Number],
         default: []
     },
-    imageURL:{
-        type:String
-    },
-    pageCount:{
-        type:Number,
+    imageURL: {
+        type: String,
         required: true
     },
-    reviewCount:{
-        type:Number,
+    pageCount: {
+        type: Number,
+        required: true
+    },
+    reviewCount: {
+        type: Number,
         default: 0
+    },
+    isbn: {
+        type: String
+    },
+    nytlist: {
+        type: String
     }
 })
 
-const Book = mongoose.model('Book',bookSchema )
+const Book = mongoose.model('Book', bookSchema)
 module.exports = Book
