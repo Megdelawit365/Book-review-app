@@ -18,28 +18,21 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL],
+    origin: [process.env.FRONTEND_URL, "http://localhost:5174"],
     credentials: true,
   })
 );
 app.use(cookieParser());
 
-// mongoose.connect(process.env.DB_URL)
-//     .then(async(res)=>{
+mongoose.connect(process.env.DB_URL)
+  .then(async (res) => {
 
-//         console.log("mongodb connected");
-//         const existingBooks = await Book.find({});
-//         if(existingBooks.length==0){
-//             await Book.insertMany(books);
-//             console.log('books added');
-//         }else{
-//             console.log('books already added')
-//         }
-//     }).catch((err)=>console.log(err.message))
+    console.log("mongodb connected");
+  }).catch((err) => console.log(err.message))
 
-//     app.get('/', (req, res) => {
-//         res.send('Server is up and running!');
-//     });
+app.get('/', (req, res) => {
+  res.send('Server is up and running!');
+});
 app.use("/", bookRoutes);
 // app.use("/", userRoutes);
 // app.use("/", reviewRoutes);
