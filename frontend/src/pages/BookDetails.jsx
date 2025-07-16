@@ -14,7 +14,7 @@ const BookDetails = () => {
     const image = state?.image;
     const author = state?.author;
     const isbn = state?.isbn;
-    const [book, setBook] = useState({})
+    const [book, setBook] = useState([])
     const [moreBooks, setMoreBooks] = useState([])
 
     useEffect(() => {
