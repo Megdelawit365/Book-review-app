@@ -144,16 +144,29 @@
     border-top-left-radius: 0.5rem;
 }
 
+
+
 @media (max-width:780px) {
     .bestseller-books-container {
         grid-template-columns: repeat(auto-fit, minmax(1rem, 2fr));
     }
 
-    .bestseller-books-container .book-card {
-        width: 100%;
+    .bestseller-books-container.grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+        gap: 1rem;
+        padding: 1rem;
+        justify-items: center;
     }
 
     .bestseller-books-container .book-card {
         width: 100%;
     }
+
+
+    .small-screen-hide {
+        display: none;
+    }
+
+
 }
