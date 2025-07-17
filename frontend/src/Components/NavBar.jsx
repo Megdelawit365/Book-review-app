@@ -53,7 +53,7 @@ const NavBar = () => {
                         <div className='search-result'>
                             {searchResult.map((result, index) => {
                                 return <Link className='result-container' key={index} to={`/details/${result?.volumeInfo?.industryIdentifiers?.[1]?.identifier}`} state={{ isbn: result?.volumeInfo?.industryIdentifiers?.[1]?.identifier }}>
-                                    <img src={result?.volumeInfo?.imageLinks?.thumbnail || 'https://placehold.co/200x300?text=No+Cover'} alt="" />
+                                    <img src={result?.volumeInfo?.imageLinks?.thumbnail?.replace(/^http:/, 'https:') || 'https://placehold.co/200x300?text=No+Cover'} alt="" />
                                     <p  >{result.volumeInfo.title}</p>
                                 </Link>
                             })}
