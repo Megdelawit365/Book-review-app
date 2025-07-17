@@ -29,6 +29,7 @@
 
 .hero-section h1 {
     font-size: 3.5rem;
+    width: 90%;
     max-width: 50rem;
     animation: slideIn 1s ease-out forwards;
     padding-top: 0;
@@ -37,6 +38,7 @@
 .hero-section p {
     font-size: 1.1rem;
     color: rgba(0, 0, 0, 0.5);
+    width: 90%;
     max-width: 50rem;
 }
 
@@ -51,4 +53,22 @@
 
 .hero-section span {
     color: #6262f9;
+}
+
+
+
+@media (max-width:600px) {
+    .hero-section h1 {
+        font-size: 1.9rem;
+    }
+
+    .hero-section p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width:601px) and (max-width:780px) {
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
 }
