@@ -6,6 +6,7 @@ import StarRatings from 'react-star-ratings'
 import '../Styles/Details.css'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import axios from 'axios'
+import { FiChevronDown } from 'react-icons/fi';
 const apiURL = import.meta.env.VITE_API_URL
 
 const BookDetails = () => {
@@ -14,7 +15,7 @@ const BookDetails = () => {
     const image = state?.image;
     const author = state?.author;
     const isbn = state?.isbn;
-    const [book, setBook] = useState([])
+    const [book, setBook] = useState({})
     const [moreBooks, setMoreBooks] = useState([])
 
     useEffect(() => {
@@ -35,7 +36,7 @@ const BookDetails = () => {
     }, [isbn])
 
 
-    const dateStr = book[0]?.volumeInfo.publishedDate;
+    const dateStr = book?.[0]?.volumeInfo.publishedDate;
     const date = new Date(dateStr);
 
     return (
@@ -46,8 +47,8 @@ const BookDetails = () => {
                     <div className='image-container'>
                         <img src={image || book[0]?.volumeInfo?.imageLinks?.thumbnail} alt="" />
                         <div className='btn-container'>
-                            <button>Buy now</button>
                             <button>Want to read</button>
+                            <button><FiChevronDown className='icon' /></button>
                         </div>
                     </div>
                     <div className='right-half'>
