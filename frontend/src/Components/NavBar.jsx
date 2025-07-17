@@ -38,7 +38,7 @@ const NavBar = () => {
             </div>
             <button className='small-screen-show signup-btn-small'><Link to='/signup'>Sign up</Link></button>
 
-            <div className={`small-screen-search ${openSearch ? "open" : "close"}`}>
+            <div className={`small-screen-search small-screen-show ${openSearch ? "open" : "close"}`}>
                 <div className='search-top'>
                     <form action="">
                         <input onChange={(e) => { setSearchQuery(e.target.value) }} type="text" placeholder='Search for any book' />
