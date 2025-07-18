@@ -1,0 +1,108 @@
+.signup-container {
+    margin: auto;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    width: fit-content;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: baseline;
+    border-radius: 0.2rem;
+    background-color: white;
+    min-width: 21rem;
+}
+
+.signup-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+    margin: 0;
+}
+
+
+.signup-container h1 {
+    font-size: 1.4rem;
+}
+
+.signup-container p {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 0.9rem;
+}
+
+.names-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+    box-sizing: border-box;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup-container input {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 0.2rem;
+
+}
+
+.names-container div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: fit-content;
+    box-sizing: border-box;
+    max-width: 12rem;
+}
+
+.names-container div label,
+.email-container label {
+    font-size: 0.9rem;
+}
+
+.email-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+
+}
+
+.email-container input {
+    box-sizing: border-box;
+}
+
+.signup-container button {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0.5rem 0;
+    border-radius: 0.2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+}
+
+.signup-container p:last-child {
+    text-align: center;
+    width: 100%;
+}
+
+.signup-container p:last-child a {
+    text-decoration: underline;
+}
+
+.signup-container p:last-child a:hover {
+    color: #6262f9;
+}
+
+@media (max-width:625px) {
+    .names-container div {
+        min-width: 100%;
+    }
+}

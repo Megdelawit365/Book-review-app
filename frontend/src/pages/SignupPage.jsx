@@ -1,73 +1,66 @@
-// import React, { useState } from 'react'
-// import { Link, useNavigate } from 'react-router'
-// import axios from 'axios';
-// import NavBar1 from '../../Components/NavBar1';
-// import Footer from '../../Components/Footer';
-// import { ToastContainer, toast } from 'react-toastify';
+import React from 'react'
+import '../Styles/Signup.css'
+import NavBar from '../Components/NavBar'
+import Footer from '../Components/Footer'
+import { Link, useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useState } from 'react'
+import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify';
 
-// import { FaBookBookmark } from "react-icons/fa6";
+const apiURL = import.meta.env.VITE_API_URL
 
+const SignupPage = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("")
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+    const Navigate = useNavigate();
 
-// const SignupPage = () => {
-//     const [username, setUsername] = useState('');
-//     const [password, setPassword] = useState('');
-//     const [email, setEmail] = useState('');
-//     const [user, setUser] = useState({});
-//     const navigate = useNavigate();
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios.post(`${apiURL}/signup`, { email: email, firstName: firstName, lastName: lastName, password: password }, { withCredentials: true })
+            .then((res) => {
+                console.log(res.data.message);
+                Navigate("/explore")
+                toast.success(`Welcome ${firstName}!`);
 
-//     const handleSubmit = (e) => {
-//         e.preventDefault();
-//         axios.post('http://localhost:3000/signup', { username, password, email }, { withCredentials: true })
-//             .then(res => {
-//                 setUser(res.data.user);
-//                 toast(`Signed up as: ${res.data.user.username}`);
-//                 setTimeout(() => {
-//                     navigate(`/explore-books`);
-//                 }, 1000);
-//             })
-//             .catch(error => {
-//                 if (error.response && error.response.status === 409) {
-//                     toast("User already exists");
-//                 } else {
-//                     toast('Error signing up');
-//                 }
-//             });
-//     };
-//     return (
-//         <>
-//             <div className='login-page' >
-//                 <div className='signup-box'>
-//                     <Link to='/' className='flex-row big-font'>
-//                                                       <FaBookBookmark />
-                                              
-//                                               <p>BOOKLIFY</p>
-//                                           </Link>
-//                 <h2 style={{color:"#0000cd"}} >Signup</h2>
-//                 <form onSubmit={handleSubmit}>
-//                     <label htmlFor="">Username</label>
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+    return (
+        <>
+            <NavBar />
+            <main className='signup-main'>
+                <form onSubmit={handleSubmit} className='signup-container'>
+                    <h1>Signup</h1>
+                    <p>Enter your information to create an account</p>
+                    <div className='names-container'>
+                        <div>
+                            <label htmlFor="" >First Name</label>
+                            <input id='fname' onChange={(e) => setFirstName(e.target.value)} placeholder='Kebebush' type="text" />
+                        </div>
+                        <div>
+                            <label htmlFor="">Last Name</label>
+                            <input id='lname' onChange={(e) => setLastName(e.target.value)} placeholder='Bekele' type="text" />
+                        </div>
+                    </div>
+                    <div className='email-container'>
+                        <label htmlFor="">Email</label>
+                        <input id='email' onChange={(e) => setEmail(e.target.value)} placeholder='kebebush.bekele@example.com' type="email" name="email" />
+                    </div>
+                    <div className='email-container'>
+                        <label htmlFor="">Password</label>
+                        <input onChange={(e) => setPassword(e.target.value)} placeholder='Enter a strong password' type="password" name="password" id="password" />
+                    </div>
+                    <button type='submit'>Create an account</button>
+                    <p>Already have an account? <Link to='/login'>Sign in</Link></p>
+                </form>
+            </main>
+        </>
+    )
+}
 
-//                     <div >
-//                         <input onChange={(e) => setUsername(e.target.value)} type="text" name="" id="" placeholder='username' />
-//                     </div>
-//                     <label htmlFor="">Email</label>
-
-//                     <div>
-//                         <input onChange={(e) => setEmail(e.target.value)} type="text" name="" id="" placeholder='email' />
-//                     </div>
-//                     <label htmlFor="">Password</label>
-
-//                     <div>
-//                         <input onChange={(e) => setPassword(e.target.value)} type="password" name="" id="" placeholder='password' />
-//                     </div>
-
-//                     <button className='button2' type='submit'>Signup</button>
-//                 </form>
-//                 <p>Have an Account? <Link to="/login" style={{color:"#0000cd"}}>Login</Link></p>
-//                 </div>
-                
-//             </div>
-//         </>
-//     )
-// }
-
-// export default SignupPage
+export default SignupPage

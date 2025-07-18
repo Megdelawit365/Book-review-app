@@ -4,8 +4,9 @@ import Footer from '../Components/Footer'
 import { FaStar, FaRegStar } from 'react-icons/fa';
 import StarRatings from 'react-star-ratings'
 import '../Styles/Details.css'
-import { useLocation, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import axios from 'axios'
+import { FiChevronDown } from 'react-icons/fi';
 const apiURL = import.meta.env.VITE_API_URL
 
 const BookDetails = () => {
@@ -25,17 +26,17 @@ const BookDetails = () => {
                 setBook(res.data.items)
             })
 
-        axios.get(`${apiURL}/searchGoogleBooks/author?q=${author}`)
+        axios.get(`${apiURL}/searchGoogleBooks/author?q=${author || book[0]?.volumeInfo?.authors[0]}`)
             .then((res) => {
                 console.log(res.data.items)
                 setMoreBooks(res.data.items)
             })
 
 
-    }, [])
+    }, [isbn])
 
 
-    const dateStr = book[0]?.volumeInfo.publishedDate;
+    const dateStr = book?.[0]?.volumeInfo.publishedDate;
     const date = new Date(dateStr);
 
     return (
@@ -44,16 +45,16 @@ const BookDetails = () => {
             <main className='book-details'>
                 <section className='top'>
                     <div className='image-container'>
-                        <img src={image} alt="" />
+                        <img src={image || book[0]?.volumeInfo?.imageLinks?.thumbnail} alt="" />
                         <div className='btn-container'>
-                            <button>Buy now</button>
                             <button>Want to read</button>
+                            <button><FiChevronDown className='icon' /></button>
                         </div>
                     </div>
                     <div className='right-half'>
                         <div>
-                            <h1>{title}</h1>
-                            <h2>{author} </h2>
+                            <h1>{title || book[0]?.volumeInfo?.title}</h1>
+                            <h2>{author || book[0]?.volumeInfo?.authors[0]} </h2>
                             {/* <p>{book[0]?.volumeInfo?.description}</p> */}
                         </div>
 
@@ -74,7 +75,9 @@ const BookDetails = () => {
                         </div>
 
                         <div className='description'>
-                            {book[0]?.volumeInfo?.description}
+                            {
+                                book[0]?.volumeInfo?.description || <div className='spinner'></div>
+                            }
                         </div>
                     </div>
 
@@ -92,17 +95,19 @@ const BookDetails = () => {
                             />
 
                         </div>
-                        <textarea placeholder='Leave a review here...'> </textarea>
+                        <textarea placeholder='Leave a review here...' />
                     </div>
                     <button>Submit</button>
 
                 </section>
                 <section className='more-books-section'>
-                    <h1>More Books By {author}</h1>
+                    <h1>More Books By {author || book[0]?.volumeInfo?.authors[0]}</h1>
                     <div className='img-container'>
                         {
                             moreBooks?.map((book, index) => (
-                                <img src={book?.volumeInfo?.imageLinks?.thumbnail || 'https://via.placeholder.com/128x195?text=No+Image'} key={index} alt="" />
+                                <Link state={{ isbn: book?.volumeInfo?.industryIdentifiers?.[1]?.identifier || book?.volumeInfo?.industryIdentifiers?.[0]?.identifier }} key={index} to={`/details/${book?.volumeInfo?.industryIdentifiers?.[1]?.identifier || book?.volumeInfo?.industryIdentifiers?.[0]?.identifier}`}>
+                                    <img src={book?.volumeInfo?.imageLinks?.thumbnail || 'https://placehold.co/200x300?text=No+Cover'} alt="" />
+                                </Link>
                             ))
                         }
                     </div>

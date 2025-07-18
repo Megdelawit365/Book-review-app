@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const bookRoutes = require("./Routes/bookRoutes");
 // const reviewRoutes = require("./Routes/reviewRoutes");
-// const userRoutes = require("./Routes/userRoutes");
+const userRoutes = require("./Routes/userRoutes");
 const port = process.env.PORT;
 const Book = require("./models/Book-model");
 
@@ -24,23 +24,16 @@ app.use(
 );
 app.use(cookieParser());
 
-// mongoose.connect(process.env.DB_URL)
-//     .then(async(res)=>{
+mongoose.connect(process.env.DB_URL)
+  .then(async (res) => {
 
-//         console.log("mongodb connected");
-//         const existingBooks = await Book.find({});
-//         if(existingBooks.length==0){
-//             await Book.insertMany(books);
-//             console.log('books added');
-//         }else{
-//             console.log('books already added')
-//         }
-//     }).catch((err)=>console.log(err.message))
+    console.log("mongodb connected");
+  }).catch((err) => console.log(err.message))
 
-//     app.get('/', (req, res) => {
-//         res.send('Server is up and running!');
-//     });
+app.get('/', (req, res) => {
+  res.send('Server is up and running!');
+});
 app.use("/", bookRoutes);
-// app.use("/", userRoutes);
+app.use("/", userRoutes);
 // app.use("/", reviewRoutes);
 app.listen(port, () => console.log(`listening on port ${port}`));

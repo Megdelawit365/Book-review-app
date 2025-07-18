@@ -3,27 +3,31 @@ const Book = require('./Book-model')
 
 
 const userSchema = new mongoose.Schema({
-  email:{
+  email: {
     required: true,
     type: String
   },
-  password:{
+  password: {
     required: true,
     type: String
   },
-  username:{
+  firstName: {
     required: true,
     type: String
   },
-  savedBooks:{
+  lastName: {
+    required: true,
+    type: String
+  },
+  savedBooks: {
     type: [mongoose.Schema.Types.ObjectId],
     ref: Book
   },
-  joined:{
+  joined: {
     type: Date,
     default: Date.now
   }
-  }
+}
 );
 
 

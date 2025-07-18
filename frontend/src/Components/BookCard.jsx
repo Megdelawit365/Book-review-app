@@ -9,7 +9,6 @@ const BookCard = ({ image, title, description, author }) => {
         <p>By {author}</p>
         <p className='light'>{description}</p>
         <div className='btn-container'>
-          <button>Find on Amazon</button>
           <button>Want to read</button>
         </div>
       </div>
