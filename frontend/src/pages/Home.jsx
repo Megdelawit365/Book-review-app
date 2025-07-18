@@ -17,6 +17,8 @@ const Home = () => {
                     <h1>Discover <span>Books</span> . Read & Write Reviews. Save Your Favorites.</h1>
                     <p>A Place For Book Lovers To Explore and Share Book Reviews. Join And Find Your Next Great Read!</p>
                     <button><Link to='/explore'>Get Started</Link></button>
+                                            <p style={{color:"red"}}>Still in Progress(unfinished)</p>
+
                 </section>
             </main>
             <Footer />
