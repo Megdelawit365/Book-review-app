@@ -157,9 +157,9 @@ router.get('/books/saved-books/:id', async (req, res) => {
 router.post('/api/logout', async (req, res) => {
     try {
         const usertoken = req.cookies.usertoken;
-        // if (usertoken) {
-        //     blacklistToken(usertoken);
-        // }
+        if (usertoken) {
+            blacklistToken(usertoken);
+        }
         res.clearCookie('usertoken').json({ message: 'Logged out' });
 
     }
