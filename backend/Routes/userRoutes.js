@@ -25,7 +25,12 @@ router.post('/api/signup', async (req, res) => {
         await newUser.save();
         const token = jwt.sign({ userId: newUser._id }, process.env.TOKEN_KEY, { expiresIn: '1hr' });
 
-        res.cookie("usertoken", token);
+        res.cookie("usertoken", token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None'
+        });
+
 
         res.json({ message: "Signed up", user: newUser, token });
     } catch (error) {
@@ -48,7 +53,12 @@ router.post('/api/login', async (req, res) => {
 
         const token = jwt.sign({ userId: existingUser._id }, process.env.TOKEN_KEY, { expiresIn: '1hr' });
 
-        res.cookie("usertoken", token);
+       res.cookie("usertoken", token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None'
+        });
+
         res.json({ message: "Logged in", user: existingUser, token });
     } catch (error) {
         res.json({ error: error.message });
