@@ -16,7 +16,8 @@
 
 .bestseller-books-container .book-card {
     box-sizing: border-box;
-    width: 60%;
+    width: 80%;
+    margin: auto;
 
 }
 
@@ -130,7 +131,7 @@
 }
 
 .view-toggle button.active {
-    background-color: #6262f9;
+    background-color: #fb433c;
     color: white;
 }
 

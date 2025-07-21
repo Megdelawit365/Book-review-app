@@ -7,6 +7,7 @@ import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AddReview from './pages/AddReview'
 
 function App() {
 
@@ -24,6 +25,8 @@ function App() {
         <Route path='/details/:isbn' element={<BookDetails />}></Route>
         <Route path='/signup' element={<SignupPage />}></Route>
         <Route path='/login' element={<LoginPage />}></Route>
+        <Route path='/add-review' element={<AddReview />}></Route>
+
       </Routes>
     </BrowserRouter>
   )

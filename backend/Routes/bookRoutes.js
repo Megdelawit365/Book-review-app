@@ -102,25 +102,31 @@ router.get("/api/searchGoogleBooks/author", async (req, res) => {
 //   }
 // });
 
-// router.post("/api/books", async (req, res) => {
-//   try {
-//     const { title, author, genre, description, date, imageURL, pageCount } =
-//       req.body;
-//     const newBook = new Book({
-//       title: title,
-//       author: author,
-//       genre: genre,
-//       description: description,
-//       publishYear: date,
-//       imageURL: imageURL,
-//       pageCount: pageCount,
-//     });
-//     await newBook.save();
-//     res.json({ message: "Book added successfully", book_added: newBook });
-//   } catch (err) {
-//     res.json({ error: err.message });
-//   }
-// });
+router.post("/api/books", async (req, res) => {
+  try {
+    const { title, author, genre, description, date, imageURL, pageCount, isbn } = req.body;
+    const existingBook = Book.find({ isbn: isbn });
+    if (existingBook) {
+      res.json({ message: "Book already exists in database", book: existingBook, id: existingBook._id });
+    } else {
+      const newBook = new Book({
+        title: title,
+        author: author,
+        genre: genre,
+        description: description,
+        publishYear: date,
+        imageURL: imageURL,
+        pageCount: pageCount,
+        isbn: isbn
+      });
+      await newBook.save();
+      res.json({ message: "Book added successfully", book_added: newBook, id: newBook._id });
+    }
+
+  } catch (err) {
+    res.json({ error: err.message });
+  }
+});
 
 // router.delete("/api/books/:id", async (req, res) => {
 //   try {

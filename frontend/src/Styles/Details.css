@@ -25,6 +25,110 @@
     padding: 1rem;
 }
 
+.rating-link {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-sizing: border-box;
+    align-items: center;
+    border-radius: 0.5rem;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.overall-rating {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.overall-rating .bars-container {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 70%;
+    box-sizing: border-box;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.rate {
+    padding: 0.5rem 0;
+}
+
+
+
+.bars-container div {
+    display: flex;
+    flex-direction: row;
+}
+
+.bars-container .bars-empty {
+    width: 100%;
+    box-sizing: border-box;
+    height: 0.7rem;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 5rem;
+}
+
+.bars-container .bars-filled.th {
+    width: 70%;
+}
+
+.bars-container .bars-filled.f {
+    width: 20%;
+}
+
+.bars-container .bars-filled.tw {
+    width: 50%;
+}
+
+.bars-container .bars-filled {
+    width: 40%;
+    background-color: #fb433c;
+    box-sizing: border-box;
+    height: 0.7rem;
+    border-radius: 5rem;
+}
+
+.bars-child {
+    display: flex;
+    align-items: center;
+
+}
+
+.bars-child p {
+    color: rgba(0, 0, 0, 0.5);
+    width: 12%;
+    background-color: white;
+}
+
+
+.rating-link p {
+    font-size: 2rem;
+    font-weight: 100;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.rating-link div:first-child {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.rating-link div:first-child div:first-child {
+    width: 4rem;
+    height: 4rem;
+    color: white;
+    background-color: #fb433c;
+    border-radius: 2rem;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 @media (max-width:780px) {
 
     .book-details .image-container {
@@ -202,6 +306,8 @@
     .more-books-section {
         padding-left: 28rem;
     }
+
+
 
 
 

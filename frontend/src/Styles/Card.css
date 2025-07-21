@@ -1,9 +1,7 @@
 .book-card {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-    box-sizing: border-box;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
     align-items: center;
 }
 
@@ -23,6 +21,7 @@
     flex-direction: column;
     gap: 1rem;
     justify-content: center;
+    margin-right: auto;
 }
 
 .book-card p {
@@ -35,7 +34,7 @@
 
 .book-card .details button {
     border-radius: 0;
-    width: fit-content;
+    width: fit-content !important;
 }
 
 .btn-container {
@@ -45,9 +44,10 @@
     flex-wrap: wrap;
 }
 
-.btn-container button {
+.book-card button {
     border-radius: 0;
-    width: fit-content;
+    width: 9rem !important;
+    text-align: center;
 }
 
 .book-card .details .light {

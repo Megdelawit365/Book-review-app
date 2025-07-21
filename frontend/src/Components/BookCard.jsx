@@ -8,10 +8,8 @@ const BookCard = ({ image, title, description, author }) => {
         <h1>{title}</h1>
         <p>By {author}</p>
         <p className='light'>{description}</p>
-        <div className='btn-container'>
-          <button>Want to read</button>
-        </div>
       </div>
+      <button>Want to read</button>
     </div>
   )
 }
