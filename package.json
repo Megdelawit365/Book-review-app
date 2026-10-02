@@ -1,0 +1,21 @@
+{
+  "name": "book-review-app",
+  "version": "1.0.0",
+  "description": "Bookish is a web app where readers can discover books, save their favorites and leave ratings and reviews. It's a space for book lovers to decide on their next read and reflect on what they've loved.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Megdelawit365/Book-review-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Megdelawit365/Book-review-app/issues"
+  },
+  "homepage": "https://github.com/Megdelawit365/Book-review-app#readme"
+}
