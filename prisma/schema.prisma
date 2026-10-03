@@ -12,56 +12,133 @@ datasource db {
   provider = "postgresql"
 }
 
-model User {
-  id      String   @id @default(uuid())
-  name    String
-  email   String
-  bio     String?
-  reviews Review[]
+enum RoleEnum {
+  USER
+  ADMIN
+}
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Role {
+  id              String           @id @default(uuid())
+  name            RoleEnum         @unique @default(USER)
+  users           User[]
+  rolePermissions RolePermission[]
+
+  @@map("roles")
+}
+
+model Permission {
+  id              String           @id @default(uuid())
+  action          String           @unique
+  rolePermissions RolePermission[]
+
+  @@map("permissions")
+}
+
+model RolePermission {
+  id           String     @id @default(uuid())
+  role         Role       @relation(fields: [roleId], references: [id])
+  roleId       String
+  permission   Permission @relation(fields: [permissionId], references: [id])
+  permissionId String
+
+  @@index([roleId, permissionId])
+  @@map("role_permissions")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  name         String
+  email        String   @unique
+  passwordHash String?
+  role         Role     @relation(fields: [roleId], references: [id])
+  isActive     Boolean  @default(true)
+  bio          String?
+  reviews      Review[]
+
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  roleId           String
+  authSessions     AuthSession[]
+  externalAccounts ExternalAccount[]
+
+  @@index([roleId])
+  @@map("users")
+}
+
+model ExternalAccount {
+  id                String   @id @default(uuid())
+  provider          String
+  providerAccountId String
+  user              User     @relation(fields: [userId], references: [id])
+  createdAt         DateTime @default(now())
+  userId            String
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+  @@map("external_accounts")
+}
+
+model AuthSession {
+  id                   String    @id @default(uuid())
+  userId               String
+  currentRefreshDigest String
+  expiresAt            DateTime
+  revokedAt            DateTime?
+  userAgent            String?
+  ipAdress             String?
+  user                 User      @relation(fields: [userId], references: [id])
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("auth_sessions")
 }
 
 model Genre {
-  id          String  @id @default(uuid())
-  name        String  @unique
+  id          String   @id @default(uuid())
+  name        String   @unique
   description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   books Book[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  @@map("genres")
 }
 
 model Book {
-  id            String @id @default(uuid())
+  id            String   @id @default(uuid())
   title         String
   author        String
   publishYear   Int
-  isbn          String @unique
+  isbn          String   @unique
   pageCount     Int
   averageRating Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   genre   Genre    @relation(fields: [genreId], references: [id])
   genreId String
   reviews Review[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  @@index([genreId])
+  @@map("books")
 }
 
 model Review {
-  id     String @id @default(uuid())
-  review String
-  rating Int
+  id        String   @id @default(uuid())
+  review    String
+  rating    Int
+  userId    String
+  bookId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   book   Book @relation(fields: [bookId], references: [id])
   author User @relation(fields: [userId], references: [id])
 
-  userId String
-  bookId String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  @@index([userId])
+  @@index([bookId])
+  @@map("reviews")
 }
